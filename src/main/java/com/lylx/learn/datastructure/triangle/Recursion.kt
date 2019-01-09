@@ -34,30 +34,6 @@ fun power(x: Int, y: Int): Int {
     }
 }
 
-private val weights: IntArray = intArrayOf(11, 8, 7, 6, 5)
-private var backpackArray = arrayListOf<Int>()
-
-fun backpack() {
-    loop@ for (index in 0 until weights.size) {
-        var totalWeight = 20
-        backpackArray.clear()
-        var currentIndex = index
-        while (currentIndex < weights.size) {
-            if (totalWeight - weights[currentIndex] >= 0) {
-                backpackArray.add(weights[currentIndex])
-                println("$totalWeight --- ${weights[currentIndex]}")
-                totalWeight -= weights[currentIndex]
-            }
-            if (totalWeight == 0) {
-                println("success")
-                break@loop
-            }
-            currentIndex++
-        }
-    }
-    println("backpackArray: $backpackArray")
-}
-
 /**
  * 组合
  */

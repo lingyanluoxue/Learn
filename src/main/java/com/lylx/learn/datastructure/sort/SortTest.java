@@ -23,7 +23,8 @@ public class SortTest {
 
 //        sort.bubbleSort();
 //        sort.selectionSort();
-        sort.insertSort();
+//        sort.insertSort();
+        sort.shellSort();
         sort.display();
     }
 }
