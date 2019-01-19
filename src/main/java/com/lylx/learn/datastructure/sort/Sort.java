@@ -24,6 +24,10 @@ public class Sort {
         System.out.println("");
     }
 
+    public int size(){
+        return nElems;
+    }
+
     /**
      * 冒泡排序
      * 外层 N-1趟
@@ -111,6 +115,34 @@ public class Sort {
             }
             h = (h - 1) / 3;
         }
+    }
+
+    /**
+     * 划分算法
+     */
+    public int partitionIt(int left, int right, long pivot) {
+        int leftPtr = left - 1;
+        int rightPtr = right + 1;
+        while (true) {
+            while (leftPtr < right && a[++leftPtr] < pivot) {
+                System.out.println(a[leftPtr] + "<" + pivot);
+            }
+            while (rightPtr > left && a[--rightPtr] > pivot) {
+                System.out.println(a[rightPtr] + ">" + pivot);
+            }
+            if (leftPtr >= rightPtr) {
+                break;
+            } else {
+                swap(leftPtr, rightPtr);
+            }
+        }
+        return leftPtr;
+    }
+
+    private void swap(int leftPtr, int rightPtr) {
+        long temp = a[leftPtr];
+        a[leftPtr] = a[rightPtr];
+        a[rightPtr] = temp;
     }
 
 }
