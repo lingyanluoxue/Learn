@@ -10,10 +10,10 @@ fun main(args: Array<String>) {
 //    val user = User(0, "lylx")
 //    println(user)
 
-    val list = arrayListOf<User>()
-    list.add(User(0, "lylx"))
-    list.add(User(0, "lylx"))
-    println("size:${list.size}---$list")
+//    val list = arrayListOf<User>()
+//    list.add(User(0, "lylx"))
+//    list.add(User(0, "lylx"))
+//    println("size:${list.size}---$list")
 
 //    traverse(args)
 
@@ -38,6 +38,9 @@ fun main(args: Array<String>) {
 //    count = -1
 //    println(count)
 
+    useDistinctBy()
+
+    useDistinct()
 
 }
 
@@ -180,4 +183,25 @@ fun useLambda() {
                     println("${group.key} -> $it")
                 }
             }
+}
+
+/**
+ * 返回集合元素执行指定条件后，不同元素的数组
+ * 执行条件以后去重，多个重复数据只保留首个数据
+ */
+fun useDistinctBy() {
+    val list = listOf(1, 3, 2, 4, 2)
+    val distinctList = list.distinctBy { it % 2 == 0 }
+    // 1%2==0——>false 3%2==0——>false 2%2==0——>true 4%2==0——>true 2%2==0——>true
+    // 根据多个重复数据只保留首个数据的原则：保留1,2
+    println("distinctList:$distinctList")
+}
+
+/**
+ * 返回一个只包含不同元素的数组
+ */
+fun useDistinct() {
+    val list = listOf(1, 4, 2, 2)
+    val distinctList = list.distinct()
+    println("distinctList:$distinctList")
 }
