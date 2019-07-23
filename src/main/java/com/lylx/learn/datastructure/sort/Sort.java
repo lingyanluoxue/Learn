@@ -24,7 +24,7 @@ public class Sort {
         System.out.println("");
     }
 
-    public int size(){
+    public int size() {
         return nElems;
     }
 
@@ -73,9 +73,15 @@ public class Sort {
 
     /**
      * 插入排序
+     * 1. 被标记的数据的左边数据是局部有序的，被标记的数据和它右边的数据都是未排过序的
+     * 2. 在（局部）有序组中的适当位置插入被标记的数据
+     *     a. 将被标记的数据存储在一个临时变量中
+     *     b. 对比被标记数据左边有序的数据，移动比被标记的数据大的部分有序数据，腾出适当位置放置被标记的数据
+     *     c. 最后一次移位空出的位置，就是被标记数据应该插入的位置
+     *
      * out 标记未排序的最左端的位置的数据
      * in 从out开始，向左移动
-     * while 每一趟都向右移动一个已排序的数据项
+     * while 每一趟都向右移动一个已排序的数据项，直至最后一个比被标记数据大的数据移位之后停止
      */
     public void insertSort() {
         int in;
@@ -115,34 +121,6 @@ public class Sort {
             }
             h = (h - 1) / 3;
         }
-    }
-
-    /**
-     * 划分算法
-     */
-    public int partitionIt(int left, int right, long pivot) {
-        int leftPtr = left - 1;
-        int rightPtr = right + 1;
-        while (true) {
-            while (leftPtr < right && a[++leftPtr] < pivot) {
-                System.out.println(a[leftPtr] + "<" + pivot);
-            }
-            while (rightPtr > left && a[--rightPtr] > pivot) {
-                System.out.println(a[rightPtr] + ">" + pivot);
-            }
-            if (leftPtr >= rightPtr) {
-                break;
-            } else {
-                swap(leftPtr, rightPtr);
-            }
-        }
-        return leftPtr;
-    }
-
-    private void swap(int leftPtr, int rightPtr) {
-        long temp = a[leftPtr];
-        a[leftPtr] = a[rightPtr];
-        a[rightPtr] = temp;
     }
 
 }
