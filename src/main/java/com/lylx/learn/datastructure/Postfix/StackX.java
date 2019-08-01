@@ -13,6 +13,7 @@ public class StackX {
 
     /**
      * put item on top of stack
+     * 入栈
      */
     public void push(char pushValue) {
         stackArray[++top] = pushValue;
@@ -20,6 +21,7 @@ public class StackX {
 
     /**
      * take item from top of stack
+     * 出栈
      */
     public char pop() {
         return stackArray[top--];
@@ -27,6 +29,7 @@ public class StackX {
 
     /**
      * peek at top of stack
+     * 查看栈顶数据
      */
     public char peek() {
         return stackArray[top];

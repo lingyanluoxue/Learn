@@ -2,6 +2,8 @@ package com.lylx.learn.datastructure.Postfix;
 
 /**
  * infix to postfix conversion
+ *
+ * 中缀表达式转换成后缀表达式
  */
 public class InToPost {
 

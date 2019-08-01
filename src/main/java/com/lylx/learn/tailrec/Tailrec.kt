@@ -3,9 +3,8 @@ package com.lylx.learn.tailrec
 import java.math.BigInteger
 
 /**
- * https://www.zhihu.com/question/20761771
- *
  * 尾递归
+ * https://www.zhihu.com/question/20761771
  */
 
 /**
