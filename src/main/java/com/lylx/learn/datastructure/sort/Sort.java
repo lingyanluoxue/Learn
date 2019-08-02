@@ -32,6 +32,14 @@ public class Sort {
      * 冒泡排序
      * 外层 N-1趟
      * 第out趟比较次数 N-1-out次
+     * 最小的数据项放在数组下标为 0 的位置，最大的数据项放在数组下标为 nElems-1 的位置
+     *
+     * 1. 外层循环，out 从数组最后开始，每经过一趟（完成一趟内部循环） out 减 1，
+     *    大于 out 的数据项是已经排好序的
+     * 2. 内层循环，从数组下标为 0 的位置开始，等于 out 时结束内部循环：
+     *    a. 比较相邻两个数据项值的大小，即比较 a[in] 和 a[in+1]
+     *    b. a[in] > a[in+1]，即左边数据项大，则交换位置
+     *    c. 向右移一个位置，即 in+1，继续比较
      */
     public void bubbleSort() {
         for (int out = nElems - 1; out > 0; out--) {
@@ -43,20 +51,32 @@ public class Sort {
                 }
             }
         }
-//        for (int out = 0; out < nElems - 1; out++) {
-//            for (int in = 0; in < nElems - 1 - out; in++) {
-//                if (a[in] > a[in + 1]) {
-//                    long temp = a[in];
-//                    a[in] = a[in + 1];
-//                    a[in + 1] = temp;
-//                }
-//            }
-//        }
+    }
+
+    /**
+     * 冒泡排序
+     */
+    public void bubbleSort2(){
+        for (int out = 0; out < nElems - 1; out++) {
+            for (int in = 0; in < nElems - 1 - out; in++) {
+                if (a[in] > a[in + 1]) {
+                    long temp = a[in];
+                    a[in] = a[in + 1];
+                    a[in + 1] = temp;
+                }
+            }
+        }
     }
 
     /**
      * 选择排序
      * 外层 N-1趟
+     *
+     * 1. 外层循环，out 从数据下标为 0 的位置开始，循环 n-1 趟
+     * 2. 内层循环，从数组下标为 out+1 开始，向右移位
+     *    a. 比较 a[in]  和 a[out] 的大小，即 a[in] 和 当前 a[min] 比较
+     *    b. a[in] < a[out] ，交换位置，即 min 被 赋值为 in 的值（min 指向最小数据项）
+     *    c. 向右移一个位置，即 in+1，继续进行比较
      */
     public void selectionSort() {
         long temp;
