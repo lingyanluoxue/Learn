@@ -1,5 +1,11 @@
 package com.lylx.learn.datastructure.binarytree
 
+import java.util.*
+import jdk.nashorn.internal.objects.NativeArray.pop
+import javax.swing.tree.TreeNode
+import java.util.Stack
+
+
 class Tree {
     var root: Node? = null
 
@@ -44,11 +50,32 @@ class Tree {
      * c. 调用自身来遍历节点的右子树
      * 直至所有的节点都被访问为止，此时 localRoot 为 null 返回
      */
-    fun inOrder(localRoot: Node?) {
+    fun inOrderWithRecursion(localRoot: Node?) {
         if (localRoot != null) {
-            inOrder(localRoot.leftChild)
+            inOrderWithRecursion(localRoot.leftChild)
             print("${localRoot.id} ")
-            inOrder(localRoot.rightChild)
+            inOrderWithRecursion(localRoot.rightChild)
+        }
+    }
+
+    /**
+     * 中序遍历：非递归实现
+     */
+    fun inOrder(root: Node?) {
+        if (root != null) {
+            val stack = Stack<Node>()
+            var node = root
+            while (node != null || stack.isNotEmpty()) {
+                while (node != null) {
+                    stack.push(node)
+                    node = node.leftChild
+                }
+                if (stack.isNotEmpty()) {
+                    val popNode = stack.pop()
+                    print("${popNode.id}")
+                    node = popNode.rightChild
+                }
+            }
         }
     }
 
@@ -61,11 +88,31 @@ class Tree {
      * c. 调用自身来遍历节点的右子树
      * 直至所有的节点都被访问为止，此时 localRoot 为 null 返回
      */
-    fun preOrder(localRoot: Node?) {
+    fun preOrderWithRecursion(localRoot: Node?) {
         if (localRoot != null) {
             print("${localRoot.id} ")
-            preOrder(localRoot.leftChild)
-            preOrder(localRoot.rightChild)
+            preOrderWithRecursion(localRoot.leftChild)
+            preOrderWithRecursion(localRoot.rightChild)
+        }
+    }
+
+    /**
+     * 前序遍历：非递归实现
+     */
+    fun preOrder(root: Node?) {
+        if (root != null) {
+            val stack = Stack<Node>()
+            stack.push(root)
+            while (stack.isNotEmpty()) {
+                val node = stack.pop()
+                print("${node.id}")
+                if (node.rightChild != null) {
+                    stack.push(node.rightChild)
+                }
+                if (node.leftChild != null) {
+                    stack.push(node.leftChild)
+                }
+            }
         }
     }
 
@@ -78,11 +125,64 @@ class Tree {
      * c. 访问这个节点
      * 直至所有的节点都被访问为止，此时 localRoot 为 null 返回
      */
-    fun postOrder(localRoot: Node?) {
-        if (localRoot!=null){
-            postOrder(localRoot.leftChild)
-            postOrder(localRoot.rightChild)
+    fun postOrderWithRecursion(localRoot: Node?) {
+        if (localRoot != null) {
+            postOrderWithRecursion(localRoot.leftChild)
+            postOrderWithRecursion(localRoot.rightChild)
             print("${localRoot.id} ")
+        }
+    }
+
+    /**
+     * 后序遍历：非递归实现
+     */
+    fun postOrder(root: Node?) {
+        if (root != null) {
+            val stack = Stack<Node>()
+            var node = root
+            // pre 记录上一个已经输出的结点
+            var prev = root
+            while (node != null || stack.isNotEmpty()) {
+                while (node != null) {
+                    stack.push(node)
+                    node = node.leftChild
+                }
+                if (stack.isNotEmpty()) {
+                    // 在出栈之前，先判断栈顶元素的右孩子结点
+                    val temp = stack.peek().rightChild
+                    // 当前节点无右子树或右子树已经输出
+                    if (temp == null || temp == prev) {
+                        node = stack.pop()
+                        print("${node.id}")
+                        // 记录上一个已输出结点
+                        prev = node
+                        node = null
+                    } else {
+                        // 处理右子树
+                        node = temp
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 广度遍历
+     */
+    fun breadthOrderTraversal(root: Node?) {
+        if (root != null) {
+            val queue = ArrayDeque<Node>()
+            queue.add(root)
+            while (queue.isNotEmpty()) {
+                val node = queue.remove()
+                println("${node.id}")
+                if (node.leftChild != null) {
+                    queue.add(node.leftChild)
+                }
+                if (node.rightChild != null) {
+                    queue.add(node.rightChild)
+                }
+            }
         }
     }
 
