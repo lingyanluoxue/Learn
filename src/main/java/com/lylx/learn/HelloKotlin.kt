@@ -1,6 +1,7 @@
 package com.lylx.learn
 
 import com.lylx.learn.model.User
+import com.lylx.learn.util.dayDiff
 import rx.Observable
 import java.io.File
 
@@ -38,9 +39,9 @@ fun main(args: Array<String>) {
 //    count = -1
 //    println(count)
 
-    useDistinctBy()
-
-    useDistinct()
+//    useDistinctBy()
+//
+//    useDistinct()
 
 }
 
