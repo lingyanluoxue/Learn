@@ -1,4 +1,4 @@
-package net.println.kt10.kotlin
+package com.lylx.learn.singletonInKotlin
 
 
 class LazyThreadSafeDoubleCheck private constructor(){
