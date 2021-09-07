@@ -43,8 +43,59 @@ fun main(args: Array<String>) {
 //
 //    useDistinct()
 
+//    equals()
+
+//    subString()
+
+//    split()
+
 }
 
+fun split(){
+    var data = listOf("java", "kotlin", "c++", "python").joinToString("|")
+    println(data.split("|")) // [java, kotlin, c++, python]
+
+    data = "a b c d e f g 1+2+3+4+5"
+    println(data.split(" ", "+")) // [a, b, c, d, e, f, g, 1, 2, 3, 4, 5]
+
+    data = "java1kotlin2c++3python"
+    println(data.split(Regex("[0-9]+"))) // [java, kotlin, c++, python]
+}
+
+fun subString() {
+    var data = "{java, kotlin, c++, python}"
+    // 移除前缀
+    println(data.removePrefix("{"))
+    // 移除后缀
+    println(data.removeSuffix("}"))
+    // 移除前缀和后缀
+    println(data.removeSurrounding("{", "}"))
+
+    data = data.removeSurrounding("{", "}")
+    println(data.substringAfter(", ")) // kotlin, c++, python
+    println(data.substringAfter("|")) // java, kotlin, c++, python
+    println(data.substringAfter("|", "Failed to match")) // Failed to match
+
+    println(data.substringBefore(", ")) // java
+    println(data.substringBefore("|")) // java, kotlin, c++, python
+    println(data.substringBefore("|", "Failed to match")) // Failed to match
+
+    println(data.substringAfterLast(", ")) // python
+    println(data.substringAfterLast("|")) // java, kotlin, c++, python
+    println(data.substringAfterLast("|", "Failed to match")) // Failed to match
+
+    println(data.substringBeforeLast(", ")) // java, kotlin, c++
+    println(data.substringBeforeLast("|")) // java, kotlin, c++, python
+    println(data.substringBeforeLast("|", "Failed to match")) // Failed to match
+}
+
+fun equals() {
+    val oldValue = "test"
+    val newValue = "TEST"
+    println(oldValue.equals(newValue, ignoreCase = true))
+    println(oldValue.toLowerCase() == newValue.toLowerCase())
+    println(oldValue.toUpperCase() == newValue.toUpperCase())
+}
 
 /**
  * 幕后字段
